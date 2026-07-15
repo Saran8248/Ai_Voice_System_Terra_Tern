@@ -1,17 +1,17 @@
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
+  --bg-primary: #fafaf9;
+  --bg-secondary: #f5f5f4;
   --bg-tertiary: #ffffff;
-  --accent-color: #0ea5e9;
-  --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-  --text-primary: #0f172a;
-  --text-secondary: #0284c7;
-  --text-muted: #94a3b8;
-  --border-color: rgba(14, 165, 233, 0.12);
+  --accent-color: #a26a42;
+  --accent-gradient: linear-gradient(135deg, #a26a42 0%, #d4a373 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #8c5a3c 0%, #a26a42 100%);
+  --text-primary: #1c1917;
+  --text-secondary: #8c5a3c;
+  --text-muted: #a8a29e;
+  --border-color: rgba(162, 106, 66, 0.12);
   --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(14, 165, 233, 0.16);
-  --shadow-premium: 0 10px 30px rgba(14, 165, 233, 0.04);
+  --glass-border: rgba(162, 106, 66, 0.16);
+  --shadow-premium: 0 10px 30px rgba(162, 106, 66, 0.03);
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -27,7 +27,7 @@
 
 body {
   background-color: var(--bg-primary);
-  background-image: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+  background-image: radial-gradient(circle at center, #ffffff 0%, #f5f5f4 100%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
