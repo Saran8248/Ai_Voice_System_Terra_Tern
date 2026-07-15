@@ -1,20 +1,20 @@
 :root {
-  --bg-primary: #06040a;
-  --bg-secondary: #0c0817;
-  --bg-tertiary: #140e24;
-  --accent-color: #8b5cf6;
-  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+  --bg-primary: #050a12;
+  --bg-secondary: #0a111e;
+  --bg-tertiary: #121d2f;
+  --accent-color: #57b9ea;
+  --accent-gradient: linear-gradient(135deg, #57b9ea 0%, #c25f4e 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #3faae0 0%, #b24d3d 100%);
   --text-primary: #ffffff;
-  --text-secondary: #a78bfa;
-  --text-muted: #6b7280;
-  --border-color: rgba(124, 58, 237, 0.15);
-  --glass-bg: rgba(12, 8, 23, 0.7);
-  --glass-border: rgba(124, 58, 237, 0.18);
-  --shadow-premium: 0 8px 32px 0 rgba(124, 58, 237, 0.12);
+  --text-secondary: #90d3f5;
+  --text-muted: #5e6b7e;
+  --border-color: rgba(87, 185, 234, 0.15);
+  --glass-bg: rgba(10, 17, 30, 0.75);
+  --glass-border: rgba(87, 185, 234, 0.2);
+  --shadow-premium: 0 8px 32px 0 rgba(87, 185, 234, 0.1);
   --success: #10b981;
   --warning: #f59e0b;
-  --error: #ef4444;
+  --error: #c25f4e;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -27,7 +27,7 @@
 
 body {
   background-color: var(--bg-primary);
-  background-image: radial-gradient(circle at center, #0e0922 0%, #050309 100%);
+  background-image: radial-gradient(circle at center, #0c182b 0%, #03060c 100%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
