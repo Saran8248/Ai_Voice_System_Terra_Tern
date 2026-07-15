@@ -1,17 +1,17 @@
 :root {
-  --bg-primary: #0a0b10;
-  --bg-secondary: #12131a;
-  --bg-tertiary: #1b1c26;
-  --accent-color: #6366f1;
-  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
+  --bg-primary: #06040a;
+  --bg-secondary: #0c0817;
+  --bg-tertiary: #140e24;
+  --accent-color: #8b5cf6;
+  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+  --text-primary: #ffffff;
+  --text-secondary: #a78bfa;
   --text-muted: #6b7280;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(18, 19, 26, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --border-color: rgba(124, 58, 237, 0.15);
+  --glass-bg: rgba(12, 8, 23, 0.7);
+  --glass-border: rgba(124, 58, 237, 0.18);
+  --shadow-premium: 0 8px 32px 0 rgba(124, 58, 237, 0.12);
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -27,6 +27,7 @@
 
 body {
   background-color: var(--bg-primary);
+  background-image: radial-gradient(circle at center, #0e0922 0%, #050309 100%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
