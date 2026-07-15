@@ -8,7 +8,7 @@ from app.database.connection import get_db
 from app.services.speech_to_text import speech_to_text_service
 from app.services.text_to_speech import text_to_speech_service
 from app.services.rag import rag_service
-from app.services.openai_service import openai_service
+from app.services.ollama_service import ollama_service
 from app.models.conversation import Conversation
 from app.models.message import Message
 from app.config import settings
@@ -90,7 +90,7 @@ def voice_interact(
         context = rag_service.retrieve_context(db, user_text, limit=3)
         
         # 6. LLM: Generate Answer
-        assistant_text = openai_service.generate_chat_response(user_text, context)
+        assistant_text = ollama_service.generate_chat_response(user_text, context)
         
         # 7. TTS: Synthesize Answer to Speech
         audio_output_path = text_to_speech_service.synthesize_speech(assistant_text, voice)

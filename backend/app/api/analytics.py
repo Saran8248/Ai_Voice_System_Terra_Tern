@@ -22,7 +22,7 @@ def get_analytics(db: Session = Depends(get_db)):
     
     # Calculate Customer Satisfaction from ratings
     avg_rating_query = db.query(func.avg(Feedback.rating)).scalar()
-    avg_satisfaction = round(float(avg_rating_query) * 20, 1) if avg_satisfaction_query := avg_rating_query else 92.5 # scale of 1-5 to percentage, default 92.5%
+    avg_satisfaction = round(float(avg_rating_query) * 20, 1) if avg_rating_query is not None else 92.5 # scale of 1-5 to percentage, default 92.5%
     
     # Escalation rate (let's assume fallback or dynamic percentage based on feedback < 3)
     total_feedback = db.query(Feedback).count()

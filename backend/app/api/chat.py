@@ -9,7 +9,7 @@ from app.schemas.conversation import (
     AppointmentCreate, AppointmentResponse
 )
 from app.services.rag import rag_service
-from app.services.openai_service import openai_service
+from app.services.ollama_service import ollama_service
 from app.services.email_service import email_service
 from typing import List
 
@@ -61,7 +61,7 @@ def send_chat_message(conversation_id: int, text_content: str, db: Session = Dep
     context = rag_service.retrieve_context(db, text_content, limit=3)
     
     # 5. Call LLM
-    response_text = openai_service.generate_chat_response(text_content, context)
+    response_text = ollama_service.generate_chat_response(text_content, context)
     
     # 6. Calculate Latency
     latency_ms = int((time.time() - start_time) * 1000)

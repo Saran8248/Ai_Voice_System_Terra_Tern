@@ -5,7 +5,6 @@ from sqlalchemy.orm import Session
 from app.models.document import Document, DocumentChunk, Embedding
 from app.services.embeddings import embedding_service
 from app.services.vector_search import vector_search_service
-from app.services.openai_service import openai_service
 
 logger = logging.getLogger(__name__)
 

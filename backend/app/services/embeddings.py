@@ -1,7 +1,7 @@
-from app.services.openai_service import openai_service
+from app.services.ollama_service import ollama_service
 
 class EmbeddingService:
     def get_text_embedding(self, text: str) -> list[float]:
-        return openai_service.get_embedding(text)
+        return ollama_service.get_embedding(text)
 
 embedding_service = EmbeddingService()
