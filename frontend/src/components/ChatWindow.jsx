@@ -121,7 +121,7 @@ const ChatWindow = ({ messages, currentInput, setCurrentInput, onSendMessage, is
             background: 'var(--bg-secondary)',
             border: '1px solid var(--border-color)',
             borderRadius: '10px',
-            color: 'white',
+            color: 'var(--text-primary)',
             padding: '12px 16px',
             fontSize: '14px',
             outline: 'none',
