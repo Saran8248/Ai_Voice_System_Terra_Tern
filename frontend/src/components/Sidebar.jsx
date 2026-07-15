@@ -72,8 +72,8 @@ const Sidebar = () => {
                   textDecoration: 'none',
                   fontSize: '14px',
                   fontWeight: 550,
-                  color: isActive ? '#fff' : 'var(--text-secondary)',
-                  background: isActive ? 'var(--border-color)' : 'transparent',
+                  color: isActive ? '#ffffff' : 'var(--text-primary)',
+                  background: isActive ? 'var(--accent-gradient)' : 'transparent',
                   transition: 'var(--transition-smooth)'
                 })}
               >
