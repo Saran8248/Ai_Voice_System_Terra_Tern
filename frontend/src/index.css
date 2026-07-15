@@ -1,20 +1,20 @@
 :root {
-  --bg-primary: #050a12;
-  --bg-secondary: #0a111e;
-  --bg-tertiary: #121d2f;
-  --accent-color: #57b9ea;
-  --accent-gradient: linear-gradient(135deg, #57b9ea 0%, #c25f4e 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #3faae0 0%, #b24d3d 100%);
-  --text-primary: #ffffff;
-  --text-secondary: #90d3f5;
-  --text-muted: #5e6b7e;
-  --border-color: rgba(87, 185, 234, 0.15);
-  --glass-bg: rgba(10, 17, 30, 0.75);
-  --glass-border: rgba(87, 185, 234, 0.2);
-  --shadow-premium: 0 8px 32px 0 rgba(87, 185, 234, 0.1);
+  --bg-primary: #fafafa;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #ffffff;
+  --accent-color: #52525b;
+  --accent-gradient: linear-gradient(135deg, #71717a 0%, #27272a 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #52525b 0%, #18181b 100%);
+  --text-primary: #18181b;
+  --text-secondary: #71717a;
+  --text-muted: #a1a1aa;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.03);
   --success: #10b981;
   --warning: #f59e0b;
-  --error: #c25f4e;
+  --error: #ef4444;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -27,7 +27,7 @@
 
 body {
   background-color: var(--bg-primary);
-  background-image: radial-gradient(circle at center, #0c182b 0%, #03060c 100%);
+  background-image: radial-gradient(circle at center, #ffffff 0%, #f4f4f5 100%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
