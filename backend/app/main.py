@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.database.connection import engine, Base
-from app.api import auth, chat, voice, documents, analytics
+from app.api import auth, chat, voice, documents, analytics, telephony
 
 # Create database tables automatically if they don't exist
 try:
@@ -34,6 +34,7 @@ app.include_router(chat.router, prefix=settings.API_V1_STR)
 app.include_router(voice.router, prefix=settings.API_V1_STR)
 app.include_router(documents.router, prefix=settings.API_V1_STR)
 app.include_router(analytics.router, prefix=settings.API_V1_STR)
+app.include_router(telephony.router, prefix=settings.API_V1_STR)
 
 # Mount static folder for serving synthesized voice audio files
 app.mount("/static", StaticFiles(directory="static"), name="static")
