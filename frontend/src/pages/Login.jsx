@@ -93,7 +93,7 @@ const Login = () => {
                 border: '1px solid var(--border-color)',
                 borderRadius: '8px',
                 padding: '12px',
-                color: 'white',
+                color: 'var(--text-primary)',
                 outline: 'none',
                 fontSize: '14px'
               }}
@@ -113,7 +113,7 @@ const Login = () => {
                 border: '1px solid var(--border-color)',
                 borderRadius: '8px',
                 padding: '12px',
-                color: 'white',
+                color: 'var(--text-primary)',
                 outline: 'none',
                 fontSize: '14px'
               }}

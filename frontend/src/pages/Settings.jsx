@@ -39,7 +39,7 @@ const Settings = () => {
                 border: '1px solid var(--border-color)',
                 borderRadius: '8px',
                 padding: '12px',
-                color: 'white',
+                color: 'var(--text-primary)',
                 outline: 'none',
                 fontSize: '14px'
               }}
@@ -67,7 +67,7 @@ const Settings = () => {
                 border: '1px solid var(--border-color)',
                 borderRadius: '8px',
                 padding: '12px',
-                color: 'white',
+                color: 'var(--text-primary)',
                 outline: 'none',
                 fontSize: '14px',
                 lineHeight: 1.4,
@@ -87,7 +87,7 @@ const Settings = () => {
                   border: '1px solid var(--border-color)',
                   borderRadius: '8px',
                   padding: '12px',
-                  color: 'white',
+                  color: 'var(--text-primary)',
                   outline: 'none'
                 }}
               >

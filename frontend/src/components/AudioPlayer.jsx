@@ -1,26 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, Pause, VolumeX, Volume2 } from 'lucide-react';
 
-const AudioPlayer = ({ src }) => {
+const AudioPlayer = ({ src, text }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [useBrowserSpeech, setUseBrowserSpeech] = useState(false);
 
   useEffect(() => {
     if (src) {
-      setIsPlaying(true);
-      // Auto-play when a new source arrives
-      if (audioRef.current) {
-        audioRef.current.load();
-        audioRef.current.play().catch(e => {
-          console.log('Autoplay blocked or failed:', e);
-          setIsPlaying(false);
-        });
+      // If we have text and no external audio file exists or it's a silent fallback, use high-quality Browser SpeechSynthesis
+      if (text && (!src.includes('/api/voice/audio/') || src.endsWith('.wav'))) {
+        setUseBrowserSpeech(true);
+        setIsPlaying(true);
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.onend = () => setIsPlaying(false);
+        utterance.onerror = () => setIsPlaying(false);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setUseBrowserSpeech(false);
+        setIsPlaying(true);
+        if (audioRef.current) {
+          audioRef.current.load();
+          audioRef.current.play().catch(e => {
+            console.log('Autoplay blocked or failed:', e);
+            setIsPlaying(false);
+          });
+        }
       }
     }
-  }, [src]);
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [src, text]);
 
   const togglePlay = () => {
+    if (useBrowserSpeech) {
+      if (isPlaying) {
+        window.speechSynthesis.cancel();
+        setIsPlaying(false);
+      } else {
+        setIsPlaying(true);
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.onend = () => setIsPlaying(false);
+        utterance.onerror = () => setIsPlaying(false);
+        window.speechSynthesis.speak(utterance);
+      }
+      return;
+    }
+
     if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();
@@ -32,6 +61,23 @@ const AudioPlayer = ({ src }) => {
   };
 
   const toggleMute = () => {
+    if (useBrowserSpeech) {
+      if (isMuted) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.volume = 1;
+        window.speechSynthesis.speak(utterance);
+        setIsMuted(false);
+      } else {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.volume = 0;
+        window.speechSynthesis.speak(utterance);
+        setIsMuted(true);
+      }
+      return;
+    }
+
     if (!audioRef.current) return;
     audioRef.current.muted = !isMuted;
     setIsMuted(!isMuted);
@@ -54,7 +100,7 @@ const AudioPlayer = ({ src }) => {
     }}>
       <audio
         ref={audioRef}
-        src={`http://localhost:8000${src}`}
+        src={src.startsWith('blob:') || src.startsWith('http') ? src : `http://localhost:8000${src}`}
         onEnded={() => setIsPlaying(false)}
         onError={() => setIsPlaying(false)}
       />

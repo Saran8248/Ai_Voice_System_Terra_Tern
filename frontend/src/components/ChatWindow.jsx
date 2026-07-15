@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Send, Cpu } from 'lucide-react';
 
-const ChatWindow = ({ messages, currentInput, setCurrentInput, onSendMessage, isSending }) => {
+const ChatWindow = ({ messages, currentInput, setCurrentInput, onSendMessage, isSending, onClear }) => {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -34,9 +34,31 @@ const ChatWindow = ({ messages, currentInput, setCurrentInput, onSendMessage, is
         fontWeight: 550,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
         gap: '8px'
       }}>
-        <Cpu size={16} /> Conversation Logs
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Cpu size={16} /> Conversation Logs
+        </div>
+        {onClear && messages.length > 0 && (
+          <button 
+            type="button"
+            onClick={onClear}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text-muted)',
+              fontSize: '12px',
+              cursor: 'pointer',
+              fontWeight: 650,
+              transition: 'var(--transition-smooth)'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--error)'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+          >
+            Clear Chat
+          </button>
+        )}
       </div>
 
       {/* Messages List */}
@@ -73,7 +95,7 @@ const ChatWindow = ({ messages, currentInput, setCurrentInput, onSendMessage, is
             >
               <div style={{
                 background: msg.sender === 'user' ? 'var(--accent-color)' : 'var(--bg-tertiary)',
-                color: 'white',
+                color: msg.sender === 'user' ? 'white' : 'var(--text-primary)',
                 padding: '12px 16px',
                 borderRadius: msg.sender === 'user' ? '16px 16px 2px 16px' : '16px 16px 16px 2px',
                 fontSize: '14px',

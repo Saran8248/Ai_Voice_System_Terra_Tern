@@ -99,7 +99,7 @@ const Dashboard = () => {
                     justifyContent: 'space-between'
                   }}>
                     <div>
-                      <div style={{ fontSize: '14px', fontWeight: 600, color: 'white' }}>{c.title}</div>
+                      <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-primary)' }}>{c.title}</div>
                       <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>
                         Session ID: #{c.id} • Created at: {new Date(c.created_at).toLocaleString()}
                       </div>

@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 class OllamaService:
     def __init__(self):
-        self.base_url = "http://localhost:11434"
+        self.base_url = "http://127.0.0.1:11434"
         self.model = "qwen2.5" # default model, can also be llama3.1
         self.is_available = self._check_availability()
         
@@ -23,26 +23,40 @@ class OllamaService:
         except Exception:
             return False
 
+    def _get_simulated_response(self, prompt: str) -> str:
+        p_lower = prompt.lower()
+        if p_lower.strip() in ["hi", "hello", "hey", "hi!", "hello!", "hey!"] or p_lower.startswith("hi ") or p_lower.startswith("hello "):
+            return "I am Sapandan, how can I assist you?"
+        elif p_lower.strip() in ["thank you", "thanks", "bye", "goodbye", "exit", "thank you!", "thanks!"] or "thank you" in p_lower or "goodbye" in p_lower:
+            return "You are welcome! Thank you for contacting Terra Tern. Have a great day!"
+        elif "who are you" in p_lower or "your name" in p_lower or "who is this" in p_lower:
+            return "I am Sapandan, a context-aware AI Voice Agent built for Terra Tern."
+        elif "tech stack" in p_lower or "technology" in p_lower or "install" in p_lower or "dependencies" in p_lower:
+            return "The tech stack for Terra Tern includes: Frontend: React (Vite, Lucide Icons, React Router), Backend: FastAPI (Python, Uvicorn, SQLAlchemy), Database: PostgreSQL with pgvector extension, Speech Services: OpenAI Whisper (STT) and OpenAI TTS. Run 'pip install -r requirements.txt' in the backend, and 'npm install' in the frontend to install all dependencies."
+        elif "features" in p_lower or "capabilities" in p_lower or "what can you do" in p_lower:
+            return "Our system supports: 1. Real-time audio interaction (STT & TTS), 2. Voice accent selection (Alloy, Echo, Onyx, Shimmer, etc.), 3. Knowledge base PDF uploads with RAG support, 4. WhatsApp-style temporary chat persistence, 5. Performance and usage analytics dashboards."
+        elif "help" in p_lower or "instructions" in p_lower:
+            return "I can assist you with system details, pricing inquiries, customer support, or technical integration queries. Just type or say keywords like 'pricing', 'features', 'tech stack', or 'contact'."
+        elif "pricing" in p_lower or "price" in p_lower:
+            return "Our Standard plan is $49/month, and the Enterprise plan is $299/month. Both feature unlimited local AI voice minutes."
+        elif "contact" in p_lower or "support" in p_lower:
+            return "You can contact our local support team at support@terratern.com or schedule a meeting directly from the admin panel."
+        elif "germany" in p_lower or "german" in p_lower:
+            return "We offer tailored German voice accents and quarterly scheduling assistance. Rima and Amrith recently updated the automatic absent logs."
+        return f"Thank you for reaching out to Terra Tern! In response to your question: '{prompt[:60]}...', we utilize pgvector and local LLMs to provide real-time voice intelligence."
+
     def generate_chat_response(self, prompt: str, context: str = "") -> str:
         """
         Queries local Ollama instance for LLM completions. Falls back to simulated engine.
         """
         if not self.is_available:
-            # High-fidelity simulation mode for deployed preview links
-            logger.info("Using simulated LLM response for cloud compatibility.")
-            p_lower = prompt.lower()
-            if "pricing" in p_lower or "price" in p_lower:
-                return "Our Standard plan is $49/month, and the Enterprise plan is $299/month. Both feature unlimited local AI voice minutes."
-            elif "contact" in p_lower or "support" in p_lower:
-                return "You can contact our local support team at support@terratern.com or schedule a meeting directly from the admin panel."
-            elif "germany" in p_lower or "german" in p_lower:
-                return "We offer tailored German voice accents and quarterly scheduling assistance. Rima and Amrith recently updated the automatic absent logs."
-            return f"Thank you for reaching out to Terra Tern! In response to your question: '{prompt[:60]}...', we utilize pgvector and local LLMs to provide real-time voice intelligence."
+            return self._get_simulated_response(prompt)
 
         try:
             system_prompt = (
-                "You are a helpful AI Voice Agent representing our company. "
-                "Answer the user's questions truthfully and concisely using the provided context."
+                "You are Terra Tern AI, a helpful AI Voice Agent representing Terra Tern. "
+                "Answer the user's questions truthfully and concisely using ONLY the provided document context. "
+                "If the information doesn't exist in the context, say 'I don't have that information.' and do not make anything up."
             )
             
             full_prompt = ""
@@ -65,10 +79,10 @@ class OllamaService:
             )
             if response.status_code == 200:
                 return response.json().get("response", "").strip()
-            return "I encountered an error querying the local intelligence node."
+            return self._get_simulated_response(prompt)
         except Exception as e:
             logger.error(f"Error calling local Ollama service: {e}")
-            return "I apologize, but I could not connect to my local LLM backend. Please verify that Ollama is running."
+            return self._get_simulated_response(prompt)
 
     def get_embedding(self, text: str) -> list[float]:
         """

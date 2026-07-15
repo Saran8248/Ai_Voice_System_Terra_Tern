@@ -31,12 +31,12 @@ class OpenAIService:
             if context:
                 messages.append({
                     "role": "system",
-                    "content": f"You are a helpful AI Voice Agent representing our company. Use the following document context to answer the user's questions truthfully and concisely. Context:\n\n{context}"
+                    "content": f"You are Terra Tern AI, a helpful AI Voice Agent representing Terra Tern. Answer the user's questions truthfully and concisely using ONLY the provided document context. If the information doesn't exist in the context, say 'I don't have that information.' and do not make anything up. Context:\n\n{context}"
                 })
             else:
                 messages.append({
                     "role": "system",
-                    "content": "You are a helpful AI Voice Agent representing our company. Answer the user's questions truthfully and concisely."
+                    "content": "You are Terra Tern AI, a helpful AI Voice Agent representing Terra Tern. Answer the user's questions truthfully and concisely using ONLY the provided document context. If the information doesn't exist, say 'I don't have that information.' and do not make anything up."
                 })
                 
             messages.append({"role": "user", "content": prompt})
